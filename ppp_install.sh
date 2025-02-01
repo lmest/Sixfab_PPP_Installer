@@ -97,7 +97,7 @@ if [[ $? -ne 0 ]]; then colored_echo "Process failed" ${RED}; exit 1; fi
 #colored_echo "What is your carrier APN?"
 #read carrierapn 
 #colored_echo "Your Input is : $carrierapn" ${GREEN} 
-APN="zap.vivo.com.br"
+APN=zap.vivo.com.br
 
 #while [ 1 ]
 #do
