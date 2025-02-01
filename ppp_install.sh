@@ -216,11 +216,11 @@ do
 			source ~/.profile
 			if [[ $? -ne 0 ]]; then colored_echo "Process failed" ${RED}; exit 1; fi
 
-			colored_echo "Installing WiringPi (gpio tool) if required..."
+			#colored_echo "Installing WiringPi (gpio tool) if required..."
 			
 			# Check the availability of the gpio.
-			gpio -v > /dev/null 2>&1
-			if [[ $? -ne 0 ]]; then colored_echo "WiringPi not found\n" ${RED} ; fi 
+			#gpio -v > /dev/null 2>&1
+			#if [[ $? -ne 0 ]]; then colored_echo "WiringPi not found\n" ${RED} ; fi 
 			
 			sudo apt install ./wiringpi_3.12_armhf.deb
 			# Download WiringPi from https://github.com/WiringPi/WiringPi.git 
