@@ -57,25 +57,27 @@ else
 fi
 
 
-colored_echo "Please choose your Sixfab Shield/HAT:"
-colored_echo "1: GSM/GPRS Shield"
-colored_echo "2: 3G, 4G/LTE Base Shield"
-colored_echo "3: Cellular IoT App Shield"
-colored_echo "4: Cellular IoT HAT"
-colored_echo "5: Tracker HAT"
-colored_echo "6: 3G/4G Base HAT"
+#colored_echo "Please choose your Sixfab Shield/HAT:"
+#colored_echo "1: GSM/GPRS Shield"
+#colored_echo "2: 3G, 4G/LTE Base Shield"
+#colored_echo "3: Cellular IoT App Shield"
+#colored_echo "4: Cellular IoT HAT"
+#colored_echo "5: Tracker HAT"
+#colored_echo "6: 3G/4G Base HAT"
 
 
-read shield_hat
-case $shield_hat in
-    1)    colored_echo "You chose GSM/GPRS Shield" ${GREEN};;
-    2)    colored_echo "You chose Base Shield" ${GREEN};;
-    3)    colored_echo "You chose CellularIoT Shield" ${GREEN};;
-    4)    colored_echo "You chose CellularIoT HAT" ${GREEN};;
-	5)    colored_echo "You chose Tracker HAT" ${GREEN};;
-	6)    colored_echo "You chose 3G/4G Base HAT" ${GREEN};;		
-    *)    colored_echo "Wrong Selection, exiting" ${RED}; exit 1;
-esac
+#read shield_hat
+#case $shield_hat in
+#    1)    colored_echo "You chose GSM/GPRS Shield" ${GREEN};;
+#    2)    colored_echo "You chose Base Shield" ${GREEN};;
+#    3)    colored_echo "You chose CellularIoT Shield" ${GREEN};;
+#    4)    colored_echo "You chose CellularIoT HAT" ${GREEN};;
+#	5)    colored_echo "You chose Tracker HAT" ${GREEN};;
+#	6)    colored_echo "You chose 3G/4G Base HAT" ${GREEN};;		
+#    *)    colored_echo "Wrong Selection, exiting" ${RED}; exit 1;
+#esac
+shield_hat=2
+
 
 colored_echo "Checking requirements..."
 
@@ -92,49 +94,49 @@ colored_echo "ppp installing..."
 apt-get install ppp -y
 if [[ $? -ne 0 ]]; then colored_echo "Process failed" ${RED}; exit 1; fi
 
-colored_echo "What is your carrier APN?"
-read carrierapn 
+#colored_echo "What is your carrier APN?"
+#read carrierapn 
+#colored_echo "Your Input is : $carrierapn" ${GREEN} 
+APN="zap.vivo.com.br"
 
-colored_echo "Your Input is : $carrierapn" ${GREEN} 
+#while [ 1 ]
+#do
+#	colored_echo "Does your carrier need username and password? [Y/n]"
+#	read usernpass
+#	
+#	colored_echo "You chose $usernpass" ${GREEN} 
+#
+#	case $usernpass in
+#		[Yy]* )  
+#
+#		while [ 1 ] 
+#        do 
+#        
+#        colored_echo "Enter username"
+#        read username
+#
+#		colored_echo "Your Input is : $username" ${GREEN} 
+#
+#        colored_echo "Enter password"
+#        read password
+#
+#		colored_echo "Your Input is : $password" ${GREEN} 
+#
+#        sed -i "s/noauth/#noauth\nuser \"$username\"\npassword \"$password\"/" provider
+#        break 
+#        done
+#
+#        break;;
+#		
+#		[Nn]* )  break;;
+#		*)  colored_echo "Wrong Selection, Select among Y or n" ${RED};;
+#	esac
+#done
 
-while [ 1 ]
-do
-	colored_echo "Does your carrier need username and password? [Y/n]"
-	read usernpass
-	
-	colored_echo "You chose $usernpass" ${GREEN} 
-
-	case $usernpass in
-		[Yy]* )  
-
-		while [ 1 ] 
-        do 
-        
-        colored_echo "Enter username"
-        read username
-
-		colored_echo "Your Input is : $username" ${GREEN} 
-
-        colored_echo "Enter password"
-        read password
-
-		colored_echo "Your Input is : $password" ${GREEN} 
-
-        sed -i "s/noauth/#noauth\nuser \"$username\"\npassword \"$password\"/" provider
-        break 
-        done
-
-        break;;
-		
-		[Nn]* )  break;;
-		*)  colored_echo "Wrong Selection, Select among Y or n" ${RED};;
-	esac
-done
-
-colored_echo "What is your device communication PORT? (ttyS0/ttyUSB3/etc.)"
-read devicename 
-
-colored_echo "Your input is: $devicename" ${GREEN} 
+#colored_echo "What is your device communication PORT? (ttyS0/ttyUSB3/etc.)"
+#read devicename 
+#colored_echo "Your input is: $devicename" ${GREEN} 
+devicename="/dev/ttyUSB3"
 
 if grep -q "ttyS0" <<<"$devicename"; then
 	colored_echo "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" ${BLUE}
@@ -153,7 +155,7 @@ if grep -q "ttyS0" <<<"$devicename"; then
 	colored_echo "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" ${BLUE}
 	echo
 	echo -e "Press ${BLUE}ENTER${SET} key to continue to installation or press ${BLUE}CTRL^C${SET} to abort installation and enable ttyS0 serial interface."
-	read -p "" ENTER
+	#read -p "" ENTER
 
     colored_echo "Doing atcom configuration for ttyS0 serial..."
 	# create atcom config
@@ -187,10 +189,10 @@ fi
 
 while [ 1 ]
 do
-	colored_echo "Do you want to activate auto connect/reconnect service at R.Pi boot up? [Y/n]"
-	read auto_reconnect
-
-	colored_echo "You chose $auto_reconnect" ${GREEN} 
+	#colored_echo "Do you want to activate auto connect/reconnect service at R.Pi boot up? [Y/n]"
+	#read auto_reconnect
+    #colored_echo "You chose $auto_reconnect" ${GREEN} 
+    auto_reconnect=Y
 
 	case $auto_reconnect in
 		[Yy]* )    
@@ -220,13 +222,14 @@ do
 			gpio -v > /dev/null 2>&1
 			if [[ $? -ne 0 ]]; then colored_echo "WiringPi not found\n" ${RED} ; fi 
 			
+			sudo apt install ./wiringpi_3.12_armhf.deb
 			# Download WiringPi from https://github.com/WiringPi/WiringPi.git 
-			git clone https://github.com/WiringPi/WiringPi.git 
+			#git clone https://github.com/WiringPi/WiringPi.git 
 			
 			# change directory to WiringPi and build from source code
-			pushd WiringPi && ./build && popd
+			#pushd WiringPi && ./build && popd
 
-			if [[ $? -ne 0 ]]; then colored_echo "WiringPi installation failed \nTry manual insatallation" ${RED} ; fi
+			#if [[ $? -ne 0 ]]; then colored_echo "WiringPi installation failed \nTry manual insatallation" ${RED} ; fi
 
 			# # test wiringpi and fix if there is any issue
 			# gpio readall | grep Oops > /dev/null
@@ -311,7 +314,6 @@ do
 	esac
 done
 
-read -p "Press ENTER key to reboot" ENTER
-
-colored_echo "Rebooting..." ${GREEN}
-reboot
+#read -p "Press ENTER key to reboot" ENTER
+#colored_echo "Rebooting..." ${GREEN}
+#reboot
