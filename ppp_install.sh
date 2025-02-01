@@ -136,7 +136,7 @@ APN="zap.vivo.com.br"
 #colored_echo "What is your device communication PORT? (ttyS0/ttyUSB3/etc.)"
 #read devicename 
 #colored_echo "Your input is: $devicename" ${GREEN} 
-devicename="/dev/ttyUSB3"
+devicename=ttyUSB3
 
 if grep -q "ttyS0" <<<"$devicename"; then
 	colored_echo "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" ${BLUE}
