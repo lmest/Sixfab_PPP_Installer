@@ -8,7 +8,7 @@ POWERKEY=${POWERKEY_PIN}
 POWER_UP_REQUIRED=0
 
 # default arguments
-APN=${SIM_APN}
+APN=SIM_APN
 
 # 1 : STATUS
 # 2 : POWERKEY 
