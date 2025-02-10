@@ -5,7 +5,7 @@ source functions.sh
 # default pins set for cellulariot hat 
 STATUS=${STATUS_PIN}
 POWERKEY=${POWERKEY_PIN}
-POWER_UP_REQUIRED=${POWERUP_FLAG}
+POWER_UP_REQUIRED=0
 
 # default arguments
 APN=${SIM_APN}
